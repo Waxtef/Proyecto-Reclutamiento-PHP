@@ -9,6 +9,17 @@ class User_model extends CI_Model {
         parent::__construct();
         
     }
+    public function login($user, $password)
+    {
+        $this->db->where("nombre", $user);
+        $this->db->where("clave", $password);
+        $res = $this->db->get("Usuarios");
+        if($res->num_rows() > 0){
+            return $res->row();
+        }else{
+            return false;
+        }
+    }
     public function countUser(){
         return $this->db->query("SELECT Id_Puesto FROM User ")->result();
     }

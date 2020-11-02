@@ -7,7 +7,7 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         //Do your magic here
-        $this->load->model('usuarios_model');
+        $this->load->model('user_model');
         
         
     }
@@ -24,17 +24,21 @@ class Auth extends CI_Controller {
     public function Autenticacion(){
         $user = $this->input->post('user');  
         $pass = $this->input->post('pass');  
-        if ($user=='Josemanuel' && $pass=='40236474714')   
-        {  
-            //declaring session  
-            $this->session->set_userdata(array('user'=>$user));  
-            header("Location:".base_url()."index.php/empleados_controller/Mostrar_Empleado");   
-        }  
-        else{  
-            $data['error'] = 'El usuario o clave es incorrecto';  
-            $this->load->view("Login/login");
+        $res = $this->user_model->login($user,sha1($pass));
+        if(!$res){
+            redirect(base_url(),'refresh');
             echo 'El usuario o clave es incorrecto';
-        }  
+            
+        }else{
+            $data = array(
+                'id_Usuario'=> $res->id,
+                'nombre'=> $res->nombre,
+                'login'=> TRUE);
+                $this->session->set_userdata($data);
+                
+                redirect(base_url()."index.php/empleados_controller/index");
+                
+        }
     }
     
 
