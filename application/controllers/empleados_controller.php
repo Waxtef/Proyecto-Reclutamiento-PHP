@@ -249,21 +249,7 @@ class Empleados_controller extends CI_Controller {
     public function login(){
         $this->load->view("Login/login");
     }
-    public function process(){
-        $user = $this->input->post('user');  
-        $pass = $this->input->post('pass');  
-        if ($user=='Josemanuel' && $pass=='40236474714')   
-        {  
-            //declaring session  
-            $this->session->set_userdata(array('user'=>$user));  
-            header("Location:".base_url()."index.php/empleados_controller/Mostrar_Empleado");   
-        }  
-        else{  
-            $data['error'] = 'El usuario o clave es incorrecto';  
-            $this->load->view("Login/login");
-            echo 'El usuario o clave es incorrecto';
-        }  
-    }
+    
     
 
 
