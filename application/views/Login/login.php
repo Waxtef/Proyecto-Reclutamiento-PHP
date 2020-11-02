@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 <head><link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url('Style'); ?>/css/login.css" /> </head>
-<form class="form-signin" method="POST" action="<?php echo base_url(); ?>index.php/empleados_controller/process"  >
+<form class="form-signin" method="POST" action="<?php echo base_url(); ?>index.php/auth_c/Autenticacion"  >
       <div class="text-center mb-4">
         <!--<img class="mb-4" src="<?php echo base_url('img'); ?>/hosp.png" alt="" width="72" height="72">-->
         <h1 class="h3 mb-3 font-weight-normal">Log In : Sistema Reclutamiento</h1>
