@@ -21,9 +21,6 @@ class Auth extends CI_Controller {
 	{
         header("Location:".base_url()."index.php/auth_c/Mostrar_Login");
     }
-    public function login(){
-        $this->load->view("Login/login");
-    }
     public function Autenticacion(){
         $user = $this->input->post('user');  
         $pass = $this->input->post('pass');  
