@@ -45,7 +45,7 @@ static function aplicar(){
             <li><a href="#">Candidatos</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo base_url();?>index.php/empleados_controller/login">Log out</a></li>
+            <li><a href="<?php echo base_url();?>index.php/auth_c/Mostrar_Login">Log out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

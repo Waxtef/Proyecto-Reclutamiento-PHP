@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth_c extends CI_Controller {
 
     public function __construct()
     {
@@ -25,8 +25,8 @@ class Auth extends CI_Controller {
         $user = $this->input->post('user');  
         $pass = $this->input->post('pass');  
         $res = $this->user_model->login($user,sha1($pass));
-        if(!$res){
-            redirect(base_url(),'refresh');
+        if($res = false){
+            //redirect(base_url(),'refresh');
             echo 'El usuario o clave es incorrecto';
             
         }else{

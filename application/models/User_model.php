@@ -9,11 +9,11 @@ class User_model extends CI_Model {
         parent::__construct();
         
     }
-    public function login($user, $password)
+    public function login($user, $pass)
     {
         $this->db->where("nombre", $user);
-        $this->db->where("clave", $password);
-        $res = $this->db->get("Usuarios");
+        $this->db->where("clave", $pass);
+        $res = $this->db->get("Usuario");
         if($res->num_rows() > 0){
             return $res->row();
         }else{
