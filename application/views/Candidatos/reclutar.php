@@ -44,99 +44,107 @@
           <div class="col-md-10">
             <h1>Formulario Reclutamiento <small> Streek</small></h1>
           </div>
-         
-        </div>
+         </div>
       </div>
-    </header>
+</header>
 
    
-<div class="col-md-1"></div>
-             <div class="col-md-10">
-             <?php 
-             if($this->uri->segment(2) == "Guardado_exitoso"){
-
-              echo '<p class="text-success">Datos Guardados</p>';
-             } ?>
-             <a  href="<?php echo base_url(); ?>index.php/candidato_c/index" type="button" class="btn btn-warning"> <- Volver</a>
-             <hr>
-         <!-- from para empleado -->
+<div class="col-md-1"></div> 
+<div class="col-md-10">
+  <?php if($this->uri->segment(2) == "Guardado_exitoso"){
+           echo '<p class="text-success">Datos Guardados</p>'; } ?>
+  <a  href="<?php echo base_url(); ?>index.php/candidato_c/index" type="button" class="btn btn-warning"> <- Volver</a>
+  <hr>
+         <!-- form para empleado -->
          <div class="panel panel-default">
-              <div class="panel-heading main-color-bg">
-                <h3 class="panel-title">Infromacion del Candidato</h3>
+            <div class="panel-heading main-color-bg">
+              <h3 class="panel-title">Informacion del Candidato</h3>
+            </div>
+            <div class="panel-body">
+              <form method="post" action ="<?php echo base_url();?>index.php/candidatos_c/form_validation">
+              <div class="form-group col-md-6">
+                <label>Cedula</label>
+                <input  name="cedula" type="text" class="form-control">
+                <?php echo form_error('cedula'); ?>
               </div>
-              <div class="panel-body">
-                <form method="post" action ="<?php echo base_url();?>index.php/candidatos_c/form_validation">
-                <div class="form-group col-md-6">
-                    <label>Cedula</label>
-                    <input  name="cedula" type="text" class="form-control">
-                    <?php echo form_error('cedula'); ?>
-                </div>
-                  <div class="form-group col-md-6">
-                    <label>Nombre</label>
-                    <input  name="nombre" type="text" class="form-control">
-                    <?php echo form_error('nombre'); ?>
-                  </div>
-                    <!--Puestos-->
-                    <h3 class="panel-title col-md-12">Puesto a Pedir</h3>
-                    <br>
+              <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input  name="nombre" type="text" class="form-control">
+                <?php echo form_error('nombre'); ?>
+              </div>
+            </div>
+          </div>
 
-                    <div class="form-group col-md-4">
-                    <label for="puesto">Puestos</label>
-                   
-                     <select class="custom-select d-block form-control" id="puesto" name="puesto" required>
-                     <?php 
 
-                     foreach($puesto as $p)
-                     
-                    {
-                    echo "<option value=".$p->Id_Puesto.">".$p->Nombre."</option>";}
-                 
-                  ?>
-                
+
+              <!--Puestos-->
+          <div class="panel panel-default">
+            <div class="panel-heading main-color-bg">
+              <h3 class="panel-title">Puesto</h3>
+            </div>
+            <div class="panel-body">
+              <br>
+              <div class="form-group col-md-4">
+                <label for="puesto">Puestos</label>
+                <select class="custom-select d-block form-control" id="puesto" name="puesto" required>
+                <?php foreach($puesto as $p){
+                        echo "<option value=".$p->Id_Puesto.">".$p->Nombre."</option>";}
+                ?>
                 </select>
                 <?php echo form_error('puesto'); ?>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="puesto">Departamento</label>
-                   
-                     <select class="custom-select d-block form-control" id="departamento" name="departamento" required>
-                     <?php 
-
-                     foreach($puesto as $d)
-                     
-                    {
-                    echo "<option value=".$d->Id_Puesto.">".$p->Departamento."</option>";}
+              </div>
+              <div class="form-group col-md-4">
+                <label for="puesto">Departamento</label>
+                <select class="custom-select d-block form-control" id="departamento" name="departamento" required>
+                <?php foreach($puesto as $d){
+                        echo "<option value=".$d->Id_Puesto.">".$p->Departamento."</option>";}
                  
-                  ?>
-                
+                ?>
                 </select>
                 <?php echo form_error('departamento'); ?>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Salario</label>
-                    <input  name="salario" type="text" class="form-control">
-                    <?php echo form_error('salario'); ?>
-                    </div>
+                  <label>Salario Recomendado</label>
+                  <input  name="salario" type="text" class="form-control">
+                  <?php echo form_error('salario'); ?>
+                </div>
+              </div>
+            </div>
 
 
-                    <div class="form-group col-md-4">
-                    <label for="competencia">Competencia</label>
-                    <select class="custom-select d-block form-control" id="competencia" name="competencia" required>
-                     <?php foreach($competencia as $c){echo "<option value=".$c->Id_Comp.">".$c->Descripcion."</option>";}?></select>
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label for="competencia2">_</label>
-                    <select class="custom-select d-block form-control" id="competencia2" name="competencia2" required>
-                     <?php foreach($competencia as $c){echo "<option value=".$c->Descripcion.">".$c->Descripcion."</option>";}?></select>
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label for="competencia3">_</label>
-                    <select class="custom-select d-block form-control" id="competencia2" name="competencia2" required>
-                     <?php foreach($competencia as $c){echo "<option value=".$c->Descripcion.">".$c->Descripcion."</option>";}?></select>
-                    </div>
+
+
+            <!-- Competencia-->
+
+            <div class="form-group col-md-4">
+
+              <div class="panel panel-default">
+                <div class="panel-heading main-color-bg">
+                  <h3 class="panel-title">Competencias</h3>
+                </div>
+                <div class="panel-body">
+                <form method="" action="">
+                <div class="col-md-9">
+                  <label for="competencia">Elija una Competencia</label>
+                  <select class="custom-select d-block form-control" id="competencia" name="competencia" required>
+                  <?php foreach($competencia as $c){echo "<option value=".$c->Id_Comp.">".$c->Descripcion."</option>";}?></select>
+                </div>
+                <div class="col-md-3">
+                     <button type="button" name="agregar_comp" class="btn btn-success">+</button>
+                </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div>
+            
+
+
+                   
 
                     <div class="form-group col-md-12">
-                    <label>Ultima Capacitacion Descripcion</label>
+                    <label>Capacitaciones </label>
                     <input  name="descripcion" type="text" class="form-control">
                     <?php echo form_error('descripcion'); ?>
                     </div>
@@ -179,7 +187,7 @@
                      </br>
                   <input type="submit" name="guardar" class="btn btn-success" value="Guardar">
                 </form>
-              </div></div></div></div>
+              </div>
              
     
             
