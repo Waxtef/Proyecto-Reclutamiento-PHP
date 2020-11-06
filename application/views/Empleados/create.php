@@ -60,7 +60,7 @@
               echo '<p class="text-success">Datos Guardados</p>';
              } ?>
               <?php 
-             if($this->uri->segment(2) == "cedula_invalida"){
+             if($this->uri->segment(3) == "cedula_invalida"){
 
               echo '<p class="text-danger">Cedula Invalida</p>';
              } ?>

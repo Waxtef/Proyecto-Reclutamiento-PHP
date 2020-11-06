@@ -34,11 +34,12 @@ class Empleados_controller extends CI_Controller {
 
         if($this->form_validation->run()){
             //true
-            
+            echo 1;
 
             $this->load->model('empleados_model');
             if($this->input->post())
             {
+                echo 2;
                 $cedula = $this->db->escape($_POST["cedula"]);
                 $nombre = $this->db->escape($_POST["nombre"]);
                 $f_ingreso = $this->db->escape($_POST["f_ingreso"]);
@@ -46,6 +47,7 @@ class Empleados_controller extends CI_Controller {
                 $puesto= $this->db->escape($_POST["puesto"]);
                 $salario= $this->db->escape($_POST["salario"]);
                 $estado= $this->db->escape($_POST["estado"]);
+                echo 3;
                 //validacion cedula
                 //-------------------------------------------------
                 $c            = str_replace("-", "", $cedula);
@@ -53,42 +55,45 @@ class Empleados_controller extends CI_Controller {
                 $verificador  = substr($c, - 1, 1);
                 $suma         = 0;
                 $cedulaValida = 0;
+                echo 4;
 
                 if (strlen($cedula) < 11) {
-                   return false;
+                    $cedulaValida = 0;
+                
                 }
-   
                 for ($i = 0; $i < strlen($cedu); $i++) {
+                    $mod = "";
 
-        $mod = "";
+                   if (($i % 2) == 0) {
+                    $mod = 1;
+                   } else {
+                    $mod = 2;
+                   }
 
-        if (($i % 2) == 0) {
-            $mod = 1;
-        } else {
-            $mod = 2;
-        }
+                   $res = substr($cedu, $i, 1) * $mod;
 
-        $res = substr($cedu, $i, 1) * $mod;
-
-        if ($res > 9) {
-            $res = (string) $res;
-            $uno = substr($res, 0, 1);
-            $dos = substr($res, 1, 1);
+                   if ($res > 9) {
+                   $res = (string) $res;
+                   $uno = substr($res, 0, 1);
+                   $dos = substr($res, 1, 1);
           
-            $res = $uno + $dos;
-        }
+                   $res = $uno + $dos;
+                   }
 
-        $suma += $res;
+                   $suma += $res;
 
-    }
+                }
     
-    $el_numero = (10 - ($suma % 10)) % 10;
+                $el_numero = (10 - ($suma % 10)) % 10;
 
-    if ($el_numero == $verificador && substr($cedu, 0, 3) != "000") {
-        $cedulaValida = 1;
-    } else {
-        $cedulaValida = 0;
-    }
+                if ($el_numero == $verificador && substr($cedu, 0, 3) != "000") {
+                $cedulaValida = 1;
+                echo true;
+                } else {
+                $cedulaValida = 0;
+                echo false;
+                }
+            
 
                 
                 
