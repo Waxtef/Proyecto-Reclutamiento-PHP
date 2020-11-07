@@ -12,10 +12,11 @@ class Empleados_controller extends CI_Controller {
         
         
     }
+    
 
 	
 	
-    public functioN crear()
+    public function crear()
     {
         $this->load->view('Empleados/create');
     }
@@ -29,7 +30,7 @@ class Empleados_controller extends CI_Controller {
         $this->form_validation->set_rules('f_ingreso', 'Fecha', 'required');
         $this->form_validation->set_rules('departamento', 'Departamento', 'required|max_length[40]');
         $this->form_validation->set_rules('puesto', 'Puesto', 'required|max_length[40]');
-        $this->form_validation->set_rules('salario', 'Salario', 'required|max_length[10]|greater_than[10000]|numeric');
+        $this->form_validation->set_rules('salario', 'Salario', 'required|max_length[10]|numeric');
         $this->form_validation->set_rules('estado', 'Estado', 'required|max_length[20]');
 
         if($this->form_validation->run()){
@@ -51,53 +52,48 @@ class Empleados_controller extends CI_Controller {
                 //validacion cedula
                 //-------------------------------------------------
                 $c            = str_replace("-", "", $cedula);
-                $cedu         = substr($c, 0,  - 1);
-                $verificador  = substr($c, - 1, 1);
-                $suma         = 0;
-                $cedulaValida = 0;
-                echo 4;
+    $cedul       = substr($c, 0,  - 1);
+    $verificador  = substr($c, - 1, 1);
+    $suma         = 0;
+    $cedulaValida = 0;
 
-                if (strlen($cedula) < 11) {
-                    $cedulaValida = 0;
-                
-                }
-                for ($i = 0; $i < strlen($cedu); $i++) {
-                    $mod = "";
+    if (strlen($cedula) < 11) {
+        return false;
+    }
+   
+    for ($i = 0; $i < strlen($cedul); $i++) {
 
-                   if (($i % 2) == 0) {
-                    $mod = 1;
-                   } else {
-                    $mod = 2;
-                   }
+        $mod = "";
 
-                   $res = substr($cedu, $i, 1) * $mod;
+        if (($i % 2) == 0) {
+            $mod = 1;
+        } else {
+            $mod = 2;
+        }
 
-                   if ($res > 9) {
-                   $res = (string) $res;
-                   $uno = substr($res, 0, 1);
-                   $dos = substr($res, 1, 1);
+        $res = substr($cedul, $i, 1) * $mod;
+
+        if ($res > 9) {
+            $res = (string) $res;
+            $uno = substr($res, 0, 1);
+            $dos = substr($res, 1, 1);
           
-                   $res = $uno + $dos;
-                   }
+            $res = $uno + $dos;
+        }
 
-                   $suma += $res;
+        $suma += $res;
 
-                }
+    }
     
-                $el_numero = (10 - ($suma % 10)) % 10;
+    $el_numero = (10 - ($suma % 10)) % 10;
 
-                if ($el_numero == $verificador && substr($cedu, 0, 3) != "000") {
-                $cedulaValida = 1;
-                echo true;
-                } else {
-                $cedulaValida = 0;
-                echo false;
-                }
-            
-
+    if ($el_numero == $verificador && substr($cedul, 0, 3) != "000") {
+        $cedulaValida = 1;
+    } else {
+        $cedulaValida = 0;
+    }
                 
-                
-                if($cedulaValida == 1){
+                if($cedulaValida = 0){
                     header("Location:".base_url()."index.php/empleados_controller/crear/cedula_invalida");
 
                 }else{
@@ -113,7 +109,7 @@ class Empleados_controller extends CI_Controller {
 
             }else{
                //false
-               $this->index();
+               header("Location:".base_url()."index.php/empleados_controller/crear/salario_invalido");
                echo "false";
             }
     }
@@ -123,6 +119,10 @@ class Empleados_controller extends CI_Controller {
     public function cedula_invalida(){
         $this->crear();
     }
+    public function salario_invalido(){
+        $this->crear();
+    }
+
 
     public function Guardado_exitoso()
     {
@@ -191,51 +191,12 @@ class Empleados_controller extends CI_Controller {
                 $estado= $this->db->escape($_POST["estado"]);
                  //validacion cedula
                 //-------------------------------------------------
-                $c            = str_replace("-", "", $cedula);
-                $cedu         = substr($c, 0,  - 1);
-                $verificador  = substr($c, - 1, 1);
-                $suma         = 0;
-                $cedulaValida = 0;
-
-                if (strlen($cedula) < 11) {
-                   return false;
-                }
-   
-                for ($i = 0; $i < strlen($cedu); $i++) {
-
-        $mod = "";
-
-        if (($i % 2) == 0) {
-            $mod = 1;
-        } else {
-            $mod = 2;
-        }
-
-        $res = substr($cedu, $i, 1) * $mod;
-
-        if ($res > 9) {
-            $res = (string) $res;
-            $uno = substr($res, 0, 1);
-            $dos = substr($res, 1, 1);
-          
-            $res = $uno + $dos;
-        }
-
-        $suma += $res;
-
-    }
-    
-    $el_numero = (10 - ($suma % 10)) % 10;
-
-    if ($el_numero == $verificador && substr($cedu, 0, 3) != "000") {
-        $cedulaValida = 1;
-    } else {
-        $cedulaValida = 0;
-    }
+                $validarced = false;
+                $validarced = valida_cedula($cedula);
 
                 
                 
-                if($cedulaValida == 1){
+                if($validarced = 0){
                     header("Location:".base_url()."index.php/empleados_controller/crear/cedula_invalida");
 
                 }else{

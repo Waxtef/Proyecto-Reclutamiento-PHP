@@ -129,7 +129,7 @@ class Puestos_c extends CI_Controller {
         $this->form_validation->set_rules('departamento', 'Departamento', 'required|max_length[40]');
         $this->form_validation->set_rules('nivel_ri', 'Nivel Riesgo', 'required|max_length[30]');
         $this->form_validation->set_rules('salario_m', 'Salario Minimo', 'required|max_length[10]|greater_than[10000]|numeric');
-        $this->form_validation->set_rules('salario_M', 'Salario Maximo', 'required|max_length[10]|greater_than[25000]|numeric');
+        $this->form_validation->set_rules('salario_M', 'Salario Maximo', 'required|max_length[10]|greater_than[100000]|numeric');
         $this->form_validation->set_rules('estado', 'Estado', 'required|max_length[30]');
 
         if($this->form_validation->run()){

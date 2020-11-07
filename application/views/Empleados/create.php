@@ -55,14 +55,38 @@
 
              <div class="col-md-9">
              <?php 
-             if($this->uri->segment(2) == "Guardado_exitoso"){
+             if($this->uri->segment(3) == "Guardado_exitoso"){
 
-              echo '<p class="text-success">Datos Guardados</p>';
+              echo '<p class="alert alert-success alert-dismissible" role="alert">Guardado exitoso</p>';
              } ?>
               <?php 
              if($this->uri->segment(3) == "cedula_invalida"){
 
-              echo '<p class="text-danger">Cedula Invalida</p>';
+              echo '<p class="alert alert-danger alert-dismissible fade show" role="alert">Cedula Invalida</p';
+             } ?>
+
+<?php 
+             if($this->uri->segment(3) == "salario_invalido"){
+
+              echo '
+              <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+
+              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <strong class="mr-auto text-danger">Error</strong>
+                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body">
+                  Salario Negativo
+                </div>
+              </div>
+            </div>
+
+
+
+              ';
              } ?>
              <a  href="<?php echo base_url(); ?>index.php/empleados_controller/index" type="button" class="btn btn-warning"> <- Volver</a>
              <hr>
@@ -72,39 +96,69 @@
                 <h3 class="panel-title">Nuevo Empleado</h3>
               </div>
               <div class="panel-body">
-                <form method="post" action ="<?php echo base_url();?>index.php/empleados_controller/form_validation">
+              <script type="text/javascript">
+function validarcedula()
+{
+ var i;
+ var cedula;
+ var acumulado;
+ cedula= document.formacedula.textocedula.value;
+ var instancia;
+ acumulado=0;
+ for (i=1;i<=9;i++)
+ {
+  if (i%2!=0)
+  {
+   instancia=cedula.substring(i-1,i)*2;
+   if (instancia>9) instancia-=9;
+  }
+  else instancia=cedula.substring(i-1,i);
+  acumulado+=parseInt(instancia);
+ }
+ while (acumulado>0)
+  acumulado-=10;
+ if (cedula.substring(9,10)!=(acumulado*-1))
+ {
+  alert("Cedula no valida!!");
+  document.formacedula.textocedula.setfocus();
+ }
+ alert("Cedula valida !!");
+}
+</script>
+                <form method="post" action="<?php echo base_url();?>index.php/empleados_controller/form_validation" form="formacedula">
                   <div class="form-group">
                     <label>Cedula</label>
-                    <input type="text" name="cedula" class="form-control" >
+                    <input type="text" name="cedula" id="textocedula" class="form-control" onchange="validarcedula()" required>
                     <?php echo form_error('cedula'); ?>
                   </div>
                   <div class="form-group">
                     <label>Nombre</label>
-                    <input  name="nombre" type="text" class="form-control">
+                    <input  name="nombre" type="text" class="form-control" required>
                     <?php echo form_error('nombre'); ?>
                     </div><hr/>
 
                      <div class="form-group">
                     <label>Departamento</label>
-                    <input  name="departamento" type="text" class="form-control" >
+                    <input  name="departamento" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-5">
                     <label>Fecha de ingreso</label>
-                    <input name="f_ingreso" type="date" class="form-control">
+                    <input name="f_ingreso" type="date" class="form-control" required>
                     </div>
                     <div class="form-group col-md-7">
                     <label>Puesto</label>
-                    <input name="puesto" type="text" class="form-control">
+                    <input name="puesto" type="text" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
                     <label>Salario</label>
-                    <input name="salario" type="text" class="form-control">
+                    <input name="salario" type="number" min="10000" class="form-control" required>
+                    <?php echo form_error('salario'); ?>
                     </div>
                     <div class="form-group col-md-6"">
                     <label for="estado">Estado</label>
                    
                      <select class="custom-select d-block form-control" id="estado" name="estado" required>
-                  <option value="Activo" >Activo</option>
+                  <option value="Activo" active>Activo</option>
                   <option value="Inactivo">Inactivo</option>
                 
                 </select>
