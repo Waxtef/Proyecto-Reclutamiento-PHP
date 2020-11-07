@@ -62,31 +62,13 @@
               <?php 
              if($this->uri->segment(3) == "cedula_invalida"){
 
-              echo '<p class="alert alert-danger alert-dismissible fade show" role="alert">Cedula Invalida</p';
+              echo '<p class="alert alert-danger alert-dismissible w" role="alert">Cedula Invalida</p';
              } ?>
-
-<?php 
+             <?php 
              if($this->uri->segment(3) == "salario_invalido"){
 
-              echo '
-              <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+              echo '<p class="alert alert-danger alert-dismissible" role="alert">Salario Minimo o Maximo Invalido</p';
 
-              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                  <strong class="mr-auto text-danger">Error</strong>
-                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="toast-body">
-                  Salario Negativo
-                </div>
-              </div>
-            </div>
-
-
-
-              ';
              } ?>
              <a  href="<?php echo base_url(); ?>index.php/empleados_controller/index" type="button" class="btn btn-warning"> <- Volver</a>
              <hr>

@@ -20,7 +20,7 @@ class Puestos_c extends CI_Controller {
         
         
     }
-    public functioN crear()
+    public function crear()
     {
         $data['empleado'] = $this->empleados_model->getEmpleado();
         $data['idioma'] = $this->idiomas_model->getIdiomas();
@@ -38,13 +38,11 @@ class Puestos_c extends CI_Controller {
         $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[40]');
         $this->form_validation->set_rules('departamento', 'departamento', 'required|max_length[40]');
         $this->form_validation->set_rules('nivel_ri', 'nivel_ri', 'required|max_length[30]');
-        $this->form_validation->set_rules('salario_m', 'salario_m', 'required|max_length[10]|greater_than[10000]|numeric');
-        $this->form_validation->set_rules('salario_M', 'salario_M', 'required|max_length[10]|greater_than[25000]|numeric');
+        $this->form_validation->set_rules('salario_m', 'salario_m', 'required|max_length[10]|greater_than[0]|numeric');
+        $this->form_validation->set_rules('salario_M', 'salario_M', 'required|max_length[10]|greater_than[0]|numeric');
         $this->form_validation->set_rules('estado', 'estado', 'required|max_length[30]');
-        echo 1;
 
         if($this->form_validation->run()){
-            echo 2;
             //true
             
             if($this->input->post())
@@ -58,11 +56,15 @@ class Puestos_c extends CI_Controller {
                 $salario_M= ($this->db->escape($_POST["salario_M"]));
                 $estado= $this->db->escape($_POST["estado"]);
                 
+                if($salario_m > $salario_M){
+                    header("Location:".base_url()."index.php/puestos_c/crear/salario_invalido");
+                }else{
                 if ($this->puestos_model->Save_Puestos($nombre,$departamento,$nivel_ri,$salario_m,$salario_M, $estado))
                 {
                     header("Location:".base_url()."index.php/puestos_c/crear/Guardado_exitoso");
                     echo "true";
                 }
+            }
 
                 }else{
                //false
@@ -82,6 +84,9 @@ class Puestos_c extends CI_Controller {
     public function editado_exitoso()
     {
         $this->Mostrar_Puestos();
+    }
+    public function salario_invalido(){
+        $this->crear();
     }
     public function Mostrar_Puestos(){
 
@@ -144,6 +149,7 @@ class Puestos_c extends CI_Controller {
                 $salario_m= ($this->db->escape($_POST["salario_m"]));
                 $salario_M= ($this->db->escape($_POST["salario_M"]));
                 $estado= $this->db->escape($_POST["estado"]);
+
                 
 			      if ($this->puestos_model->UpdatePuestos($id,$nombre,$departamento,$nivel_ri,$salario_m,$salario_M, $estado))
 			      {
@@ -154,7 +160,8 @@ class Puestos_c extends CI_Controller {
                 }
     }
     }
-}
+    }
+    
     public function index()
 	{
 		header("Location:".base_url()."index.php/puestos_c/Mostrar_Puestos");

@@ -53,13 +53,24 @@
    
    
 
-             <div class="col-md-9">
+            <div class="col-md-9">
              <?php 
-             if($this->uri->segment(2) == "Guardado_exitoso"){
+             if($this->uri->segment(3) == "Guardado_exitoso"){
 
-              echo '<p class="text-success">Datos Guardados</p>';
+              echo '<p class="alert alert-success alert-dismissible" role="alert">Guardado exitoso</p>';
              } ?>
-             <a  href="<?php echo base_url(); ?>index.php/puestos_c/index" type="button" class="btn btn-warning"> <- Volver</a>
+              <?php 
+             if($this->uri->segment(3) == "cedula_invalida"){
+
+              echo '<p class="alert alert-danger alert-dismissible w" role="alert">Cedula Invalida</p';
+             } ?>
+             <?php 
+             if($this->uri->segment(3) == "salario_invalido"){
+
+              echo '<p class="alert alert-danger alert-dismissible" role="alert">Salario Minimo o Maximo Invalido</p';
+
+             } ?>
+            <a href="<?php echo base_url(); ?>index.php/puestos_c/index" type="button" class="btn btn-warning"> <- Volver</a>
              <hr>
          <!-- from para empleado -->
          <div class="panel panel-default">
@@ -90,11 +101,11 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Salario minimo</label>
-                    <input name="salario_m" type="text" class="form-control">
+                    <input name="salario_m" type="number"  min="10000"class="form-control">
                     </div>
                     <div class="form-group col-md-4">
                     <label>Salario Maximo</label>
-                    <input  name="salario_M" type="text" class="form-control">
+                    <input  name="salario_M" type="number" class="form-control">
                     <?php echo form_error('salario_M'); ?>
                     </div>
                     <div class="form-group col-md-6"">
