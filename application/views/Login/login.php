@@ -18,6 +18,7 @@
         <!--<img class="mb-4" src="<?php echo base_url('img'); ?>/hosp.png" alt="" width="72" height="72">-->
         <h1 class="h3 mb-3 font-weight-normal">Log In : Sistema Reclutamiento</h1>
         <p>Ingrese sus datos para poder entrar, <a href="<?php echo base_url(); ?>index.php/candidatos_c/reclutamiento"><code>Si es un candidato - Clik AQUI</code><a></p>
+        <p>Ingrese sus datos para poder entrar, <a href="<?php echo base_url(); ?>index.php/candidatos_c/reclutamiento2"><code>segunda pantalla</code><a></p>
       </div>
 
       <div class="form-label-group">

@@ -230,6 +230,11 @@ class Candidatos_c extends CI_Controller {
         $this->load->view('Candidatos/reclutar', $data);
     }
     
+    public function reclutamiento2()
+    {
+        
+        $this->load->view('Candidatos/reclutamiento');
+    }
 
 
 }?>
