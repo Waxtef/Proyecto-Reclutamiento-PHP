@@ -11,14 +11,14 @@
     <script src="<?php echo base_url('Style'); ?>/css/bootstrap.min.js"></script>-->
 </head>
 <body>
-<div class="container">
 <head><link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url('Style'); ?>/css/login.css" /> </head>
+<div class="col-md-12">
+<div class="container">
 <form class="form-signin" method="POST" action="<?php echo base_url(); ?>index.php/auth_c/Autenticacion"  >
       <div class="text-center mb-4">
         <!--<img class="mb-4" src="<?php echo base_url('img'); ?>/hosp.png" alt="" width="72" height="72">-->
         <h1 class="h3 mb-3 font-weight-normal">Log In : Sistema Reclutamiento</h1>
-        <p>Ingrese sus datos para poder entrar, <a href="<?php echo base_url(); ?>index.php/candidatos_c/reclutamiento"><code>Si es un candidato - Clik AQUI</code><a></p>
-        <p>Ingrese sus datos para poder entrar, <a href="<?php echo base_url(); ?>index.php/candidatos_c/reclutamiento2"><code>segunda pantalla</code><a></p>
+        <h4>Eres un candidato? <a href="<?php echo base_url(); ?>index.php/candidatos_c/reclutamiento"><code>Si es un candidato - Clik AQUI</code><a></h4>
       </div>
 
       <div class="form-label-group">
@@ -37,6 +37,9 @@
       <span class="text-danger"><?php echo $this->session->flashdata('error'); ?></span>
       </div>
     </form>
+    </div>
+  
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?php echo base_url('Style'); ?>/js/bootstrap.min.js"></script>

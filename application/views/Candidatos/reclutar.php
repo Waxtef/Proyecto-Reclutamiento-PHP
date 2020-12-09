@@ -58,7 +58,24 @@
            echo '<p class="text-success">Datos Guardados</p>'; } ?>
   <a  href="<?php echo base_url(); ?>index.php/candidato_c/index" type="button" class="btn btn-warning"> <- Volver</a>
   <hr>
-         <!-- form para empleado -->
+  <div class="col-md-12">
+             <?php 
+             if($this->uri->segment(3) == "Guardado_exitoso"){
+
+              echo '<p class="alert alert-success alert-dismissible" role="alert">Guardado exitoso</p>';
+             } ?>
+              <?php 
+             if($this->uri->segment(3) == "cedula_invalida"){
+
+              echo '<p class="alert alert-danger alert-dismissible w" role="alert">Cedula Invalida</p';
+             } ?>
+             <?php 
+             if($this->uri->segment(3) == "salario_invalido"){
+
+              echo '<p class="alert alert-danger alert-dismissible" role="alert">Salario Minimo o Maximo Invalido</p';
+
+             } ?>
+         <!-- fInformacion empleado -->
          <div class="panel panel-default">
             <div class="panel-heading main-color-bg">
               <h3 class="panel-title">Informacion del Candidato</h3>
@@ -87,7 +104,7 @@
             </div>
             <div class="panel-body">
               <br>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="puesto">Puestos</label>
                 <select class="custom-select d-block form-control" id="puesto" name="puesto" required>
                 <?php foreach($puesto as $p){
@@ -96,7 +113,7 @@
                 </select>
                 <?php echo form_error('puesto'); ?>
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="puesto">Departamento</label>
                 <select class="custom-select d-block form-control" id="departamento" name="departamento" required>
                 <?php foreach($puesto as $d){
@@ -106,140 +123,33 @@
                 </select>
                 <?php echo form_error('departamento'); ?>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                   <label>Salario Recomendado</label>
                   <input  name="salario" type="text" class="form-control">
                   <?php echo form_error('salario'); ?>
                 </div>
-              </div>
-            </div>
 
-
-
-
-            <!-- Competencia-->
-
-            <div class="form-group col-md-4">
-
-              <div class="panel panel-default">
-                <div class="panel-heading main-color-bg">
-                  <h3 class="panel-title">Competencias</h3>
-                </div>
-                <div class="panel-body">
-                <form method="" action="">
-                <div class="col-md-9">
-                  <label for="competencia">Elija una Competencia</label>
-                  <select class="custom-select d-block form-control" id="competencia" name="competencia" required>
-                  <?php foreach($competencia as $c){echo "<option value=".$c->Id_Comp.">".$c->Descripcion."</option>";}?></select>
-                  <br>
-
-                  <select class="custom-select d-block form-control" id="competencia" name="competencia" required>
-                  <?php foreach($competencia as $c){echo "<option value=".$c->Id_Comp.">".$c->Descripcion."</option>";}?></select>
-
-                  <br>
-
-                  <select class="custom-select d-block form-control" id="competencia" name="competencia" required>
-                  <?php foreach($competencia as $c){echo "<option value=".$c->Id_Comp.">".$c->Descripcion."</option>";}?></select>
-                </div>
-                <div class="col-md-3 boton_mas">
-                     <button type="button" name="agregar_comp" class="btn btn-success">+</button>
-                </div>
-
-                  </form>
+                <div class="form-group col-md-3">
+                  <label>Recomendado por</label>
+                  <input  name="recomendado" type="text" class="form-control">
+                  <?php echo form_error('recomendado'); ?>
                 </div>
               </div>
             </div>
-            <div>
-            
 
-
-                   <div class="form-group col-md-8">
-
-                    <div class="form-group col-md-12">
-                    <label>Capacitaciones </label>
-                    <input  name="descripcion" type="text" class="form-control">
-                    <?php echo form_error('descripcion'); ?>
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label>Fecha desde</label>
-                    <input name="f_desde" type="date" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label>Fecha hasta</label>
-                    <input name="f_hasta" type="date" class="form-control">
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label for="nivel">Nivel</label>
-                   
-                     <select class="custom-select d-block form-control" id="nivel" name="nivel" required>
-                  <option value="Grado" >Grado</option>
-                  <option value="Maestria">Maestria</option>
-                  <option value="Post Grado">Post Grado</option>
-                  <option value="Doctorado">Doctorado</option>
-                  <option value="Tecnico">Tecnico</option>
-                  <option value="Gestion">Gestion</option>
-                
-                </select>
-                <?php echo form_error('nivel'); ?>
-                    </div>
-                    <div class="form-group col-md-12">
-                    <label>Institucion</label>
-                    <input  name="institucion" type="text" class="form-control">
-                    <?php echo form_error('institucion'); ?>
-                    </div>
-                    
-
-                    <div class="form-group col-md-10">
-                    <label>Recomendado</label>
-                    <input  name="recomendado" type="text" class="form-control">
-                    <?php echo form_error('Recomendado'); ?>
-                    </div>
-
-                    </div>
                     
                    
                      </br>
                      <div class="form-group col-md-10"></div>
                      <div class="form-group col-md-2">
-                  <input type="submit" name="guardar" class="btn btn-success" value="Guardar">
+                  <input type="submit" name="guardar" class="btn btn-success" value="Continuar">
                   </div>
                 </form>
               </div>
 
-                <!--TABS ON BOSTRAP AND JQUERY-->
-                <div class="container border text-center mt-4 w-50">
-                      <h3 class="m-4 text-primary">Reclutamiento</h3>
-                      <p>Completa todos los datos de Reclutamiento</p>
+               
 
-                      <div class="d-flex justify-content-center">
-                        <ul class="nav bg-light" role="tablist">
-                          <li class="nav-item">
-                             <a href="#step-1" id="step1-tab" class="nav-link active" aria-selected="true" data-toggle="tab" role="tab">Informacion</a>
-                          </li>
-                          <li class="nav-item">
-                             <a href="#step-2" id="step2-tab" class="nav-link active" aria-selected="false" data-toggle="tab" role="tab">Competencias</a>
-                          </li>
-                          <li class="nav-item">
-                             <a href="#step-3" id="step3-tab" class="nav-link active" aria-selected="false" data-toggle="tab" role="tab">Experiencias<a/>
-                          </li>
-
-
-                        </ul>
-                      </div>
-                       <div class="tab-content">
-                          <div class="tab-pane fade show active" id="step-1" arial-labelledby="step1-tab" role="tabpanel">
-                             <p>Step 1</p> 
-                          </div>
-                          <div class="tab-pane fade show" id="step-2" arial-labelledby="step2-tab" role="tabpanel">
-                             <p>Step 2</p> 
-                          </div>
-                          <div class="tab-pane fade show" id="step-3" arial-labelledby="step3-tab" role="tabpanel">
-                             <p>Step 3</p> 
-                          </div>
-                       </div>
-                    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>   
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 

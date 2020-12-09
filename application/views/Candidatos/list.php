@@ -42,7 +42,7 @@
               </a>
               <a href="<?php echo base_url(); ?>index.php/exp_c/index" class="list-group-item">
               <span class="glyphicon glyphicon-comment" aria-hidden="true">
-              </span> Experincia
+              </span> Experiencia
               </a>
               <a href="<?php echo base_url(); ?>index.php/users_c/index" class="list-group-item">
               <span class="glyphicon glyphicon-sunglasses" aria-hidden="true">
@@ -72,8 +72,6 @@
                         <th>Puesto</th>
                         <th>Departamento</th>
                         <th>Salario</th>
-                        <th>Competencia</th>
-                        <th>Capacitacion</th>
                         <th>Recomendado</th>
                         <th></th>
                         <th><th>
@@ -97,10 +95,10 @@
           echo "<tr>".
           "<td>".$ca->Cedula."</td>".
           "<td>".$ca->Nombre."</td>".
-          "<td>".$ca->Nivel_riesgo."</td>".
-          "<td>".$ca->Salario_min."</td>".
-          "<td>".$ca->Salario_max."</td>".
-          "<td>".$ca->Estado."</td>"
+          "<td>".$ca->puesto."</td>".
+          "<td>".$ca->departamento."</td>".
+          "<td>".$ca->Salario."</td>".
+          "<td>".$ca->Recomendado."</td>"
           ."<td><a class=$btn_warning href='modifyCandidatos/".$ca->Id_Candidatos."'><span class=$caencil aria-hidden=$true></span></a>"
           ."<a class=$btn_danger href='DeleteCandidatos/".$ca->Id_Candidatos."'><span class=$ex aria-hidden=$true></span></a></td>"
           ."<a class=$btn_success href='CambiarCandidatos/".$ca->Id_Candidatos."'><span class=$ex aria-hidden=$true></span></a></td>"
